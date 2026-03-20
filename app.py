@@ -7,24 +7,19 @@ st.set_page_config(page_title="AI Teacher Assistant", layout="wide")
 
 st.title("🎓 AI Teacher Assistant Chatbot")
 
-# 🔥 ML Input Sliders
 st.markdown("### 📊 Enter Details for Prediction")
 class_size = st.slider("Class Size", 10, 100, 30)
 student_score = st.slider("Student Score", 0, 100, 75)
 
-# Chat history
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
-# Mode selection
 mode = st.radio("Response Mode", ["Concise", "Detailed"], horizontal=True)
 
-# Display chat history
 for msg in st.session_state.messages:
     with st.chat_message(msg["role"]):
         st.write(msg["content"])
 
-# User input
 user_input = st.chat_input("Ask your question...")
 
 def get_rule_based_response(question, mode):
@@ -51,13 +46,11 @@ def get_rule_based_response(question, mode):
     return None
 
 if user_input:
-    # Show user message
     st.session_state.messages.append({"role": "user", "content": user_input})
 
     with st.chat_message("user"):
         st.write(user_input)
 
-    # 🔥 1. ML Prediction
     if "predict" in user_input.lower():
         try:
             features = [class_size, student_score]
@@ -67,7 +60,6 @@ if user_input:
             response = "⚠️ Error in prediction model."
 
     else:
-        # 🔍 2. RAG
         rag_response = search_knowledge(user_input)
 
         if rag_response:
@@ -88,17 +80,14 @@ if user_input:
 Effective teaching directly impacts student success and learning quality.
 """
         else:
-            # 🧠 3. Rule-based
             rule_response = get_rule_based_response(user_input, mode)
 
             if rule_response:
                 response = rule_response
             else:
-                # 🌐 4. Web fallback
                 response = "🌐 Searching on Google..."
                 open_google(user_input)
 
-    # Show bot response
     st.session_state.messages.append({"role": "assistant", "content": response})
 
     with st.chat_message("assistant"):
