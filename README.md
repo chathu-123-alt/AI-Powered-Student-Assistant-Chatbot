@@ -59,7 +59,8 @@ project/
 ## ⚙️ Installation & Setup
 
 ### 1️⃣ Clone the repository
-cd AI-Teacher-Assistant-Chatbot
+cd AI-Powered-Student-Assistant-Chatbot
+
 
 2️⃣ Create virtual environment
 python -m venv venv
