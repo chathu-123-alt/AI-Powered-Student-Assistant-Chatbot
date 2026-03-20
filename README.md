@@ -59,7 +59,6 @@ project/
 ## ⚙️ Installation & Setup
 
 ### 1️⃣ Clone the repository
-git clone https://github.com/chathu-123-alt/AI-Teacher-Assistant-Chatbot.git
 cd AI-Teacher-Assistant-Chatbot
 
 2️⃣ Create virtual environment
